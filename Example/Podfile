@@ -33,7 +33,7 @@ glog_spec_path = File.join(react_path, 'third-party-podspecs/glog.podspec')
 double_conversion_spec_path = File.join(react_path, 'third-party-podspecs/DoubleConversion.podspec')
 
 # If you add a new dependency here, it should also go in the Podspec
-sentry_path = File.join(node_modules_path, 'react-native-sentry')
+sentry_path = File.join(node_modules_path, '@sentry/react-native')
 tispi_stripe_spec_path = File.join(node_modules_path, 'tipsi-stripe/tipsi-stripe.podspec')
 mapbox_path = File.join(node_modules_path, '@mapbox/react-native-mapbox-gl')
 react_native_cameraroll_path = File.join(node_modules_path, '@react-native-community/cameraroll')
@@ -49,8 +49,10 @@ target 'Emission' do
   pod 'DoubleConversion', podspec: double_conversion_spec_path
   pod 'glog', podspec: glog_spec_path
 
-  pod 'Sentry', subspecs: %w[Core KSCrash]
-  pod 'SentryReactNative', path: sentry_path
+  pod 'Sentry', git: 'https://github.com/getsentry/sentry-cocoa.git',
+                tag: '4.4.1',
+                subspecs: %w[Core]
+  pod 'RNSentry', path: sentry_path
 
   # Got to make it look right
   pod 'Artsy+UIFonts'
@@ -63,7 +65,7 @@ target 'Emission' do
 
   # Storing Credentials
   pod 'SAMKeychain'
-  
+
   # custom zoom animation for image carousel
   pod 'INTUAnimationEngine'
 

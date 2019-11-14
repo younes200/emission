@@ -1,6 +1,6 @@
+import { captureMessage } from "@sentry/react-native"
 import { throttle } from "lodash"
 import { NativeModules } from "react-native"
-import { Sentry } from "react-native-sentry"
 
 const URLS = {
   production: "https://volley.artsy.net/report",
@@ -92,7 +92,7 @@ class VolleyClient {
         .catch(e => {
           console.error("Failed to post metrics to volley")
           console.error(e)
-          Sentry.captureMessage(e.stack)
+          captureMessage(e.stack)
         })
     },
     1000,
