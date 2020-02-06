@@ -74,7 +74,7 @@ export class FilterModal extends React.Component<ModalProps, State> {
                 <ModalInnerView visible={this.state.isComponentMounted}>
                   <Flex flexDirection="row" justifyContent="space-between">
                     <Flex alignItems="flex-end" mt={0.5} mb={2}>
-                      <Box onTouchEnd={() => this.closeModal()}>
+                      <Box onTouchStart={() => this.closeModal()}>
                         <CloseIcon fill="black100" />
                       </Box>
                     </Flex>

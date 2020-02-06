@@ -7,7 +7,7 @@ import { Schema, screenTrack } from "lib/utils/track"
 import React, { Component } from "react"
 import { FlatList, NativeModules, View } from "react-native"
 import { createFragmentContainer, graphql } from "react-relay"
-import styled from "styled-components"
+import styled from "styled-components/native"
 import { CollectionFeaturedArtistsContainer as CollectionFeaturedArtists } from "./Components/FeaturedArtists"
 
 interface CollectionProps {
@@ -84,9 +84,11 @@ export class Collection extends Component<CollectionProps, CollectionState> {
     ;(viewableItems || []).map(viewableItem => {
       const artworksRenderItem = viewableItem?.item?.type || ""
       const artworksRenderItemViewable = viewableItem?.isViewable || false
+
       if (artworksRenderItem === "collectionArtworks" && artworksRenderItemViewable) {
         return this.setState(_prevState => ({ isArtworkGridVisible: true }))
       }
+
       return this.setState(_prevState => ({ isArtworkGridVisible: false }))
     })
   }
